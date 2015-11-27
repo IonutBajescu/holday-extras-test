@@ -2,15 +2,37 @@
 
 @import '../../node_modules/semantic-ui/src/themes/default/globals/site.variables';
 
+
+body {
+  padding-top: 50px;
+}
+
 .photo-stream {
+  .header, .description, .tags {
+    margin-top: 5px;
+  }
+
   .photos {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
     .photo {
-      width: 25%;
-      float: left;
-      height: 200px;
+      width: 22%;
+      padding: 15px;
+      border: 1px solid @borderColor;
+      margin-bottom: 25px;
+      word-break: break-all;
 
       img {
+        width: 100%;
+        height: 150px;
+      }
 
+      .description, .tags {
+        .label {
+          margin-right: 6px;
+        }
       }
     }
   }

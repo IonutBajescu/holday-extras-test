@@ -1,9 +1,14 @@
+'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import FlickrAPI from './Components/FlickrAPI';
+import ReactDOM from 'react-dom';
+import PhotoStream from './PhotoStream';
 
-
+// enable react dev-tools
+if (typeof window !== 'undefined') {
+    window.React = React;
+}
 class Application extends React.Component {
 
     render() {
@@ -15,51 +20,4 @@ class Application extends React.Component {
     }
 }
 
-
-class PhotoStream extends React .Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {photos: {items: []}};
-    }
-
-    componentWillMount() {
-        this.fetch(this.props);
-    }
-
-    componentWillReceiveProps(props) {
-        this.fetch(props);
-    }
-
-    fetch(props) {
-        FlickrAPI.getPhotos().then((photos) => {
-            console.log(photos);
-            this.setState({
-                photos
-            });
-        });
-    }
-
-    renderPhoto(photo, i) {
-        return (
-            <div className="photo" key={i}>
-                <div className="box">
-                    <img src={photo.media.m} />
-                </div>
-            </div>
-        )
-    }
-
-    render() {
-        return (
-            <div className="photo-stream">
-                <h1>Flickr Photo Stream</h1>
-                <div className="photos">
-                    {this.state.photos.items.map(this.renderPhoto)}
-                </div>
-            </div>
-        )
-    }
-}
-
-ReactDOM.render(<Application/>, document.getElementById('react-mount-point'))
+ReactDOM.render(<Application/>, document.getElementById('react-mount-point'));
